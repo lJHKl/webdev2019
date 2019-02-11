@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+
+ul {
+  margin-left: 35%;
+
+}
+
+ul li {
+  cursor: pointer;
+  position: relative;
+  padding: 12px 8px 12px 40px;
+  background: #eee;
+  font-size: 18px;
+  width:50%;
+  height: 5%;
+
+}
+
+ul li:hover {
+  background: #ddd;
+}
+
+ul li.checked {
+  text-decoration: line-through;
+}
+
+ul li.checked::before {
+  content: '';
+  position: absolute;
+  border-color: #000;
+  border-style: solid;
+  border-width: 0 2px 2px 0;
+  top: 10px;
+  left: 16px;
+  transform: rotate(45deg);
+  height: 15px;
+  width: 7px;
+}
+
+.remove {
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 12px 16px 12px 16px;
+}
+
+.remove:hover {
+  background-color: #f44336;
+  color: white;
+}
+
+
+.header {
+  background-color: #141e5a;
+  padding: 30px 40px;
+  color: white;
+  text-align: center;
+}
+
+
+.header:after {
+  content: "";  
+  display: table;
+  clear: both;
+}
+
+
+input {
+  margin: 0;
+  border: none;
+  border-radius: 0;
+  width: 75%;
+  padding: 10px;
+  float: left;
+  font-size: 16px;
+}
+
+
+.Add {
+  padding: 10px;
+  width: 20%;
+  background: #d9d9d9;
+  color: #555;
+  float: left;
+  text-align: center;
+  font-size: 16px;
+  cursor: pointer;
+
+  border-radius: 0;
+}
+
+.Add:hover {
+  background-color: #bbb;
+}
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h2>DooDoo List</h2>
+            <input type="text" id="task" placeholder="Title...">
+            <span onclick="newElement()" class="Add">Add</span>
+      </div>
+      
+      <ul id="dooDooList">
+        <li>Go Away</li>
+        <li>Sleep</li>
+        <li>Nothing</li>
+      </ul>
+<script>
+
+var myNodelist = document.getElementsByTagName("li");
+var i;
+for (i = 0; i < myNodelist.length; i++) {
+  var span = document.createElement("SPAN");
+  var txt = document.createTextNode("X");
+  span.className = "remove";
+  span.appendChild(txt);
+  myNodelist[i].appendChild(span);
+}
+
+
+var remove = document.getElementsByClassName("remove");
+var i;
+for (i = 0; i < remove.length; i++) {
+  remove[i].onclick = function() {
+    var div = this.parentElement;
+    div.style.display = "none";
+  }
+}
+
+
+var list = document.querySelector('ul');
+list.addEventListener('click', function(ev) {
+  if (ev.target.tagName === 'LI') {
+    ev.target.classList.toggle('checked');
+  }
+}, false);
+
+
+function newElement() {
+  var li = document.createElement("li");
+  var inputValue = document.getElementById("task").value;
+  var t = document.createTextNode(inputValue);
+  li.appendChild(t);
+  if (inputValue === '') {
+    alert("You must write something!");
+  } else {
+    document.getElementById("dooDooList").appendChild(li);
+  }
+  document.getElementById("task").value = "";
+
+  var span = document.createElement("SPAN");
+  var txt = document.createTextNode("X");
+  span.className = "remove";
+  span.appendChild(txt);
+  li.appendChild(span);
+
+  for (i = 0; i < remove.length; i++) {
+    remove[i].onclick = function() {
+      var div = this.parentElement;
+      div.style.display = "none";
+    }
+  }
+}
+</script>
+</body>
+</html>
