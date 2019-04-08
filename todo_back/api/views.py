@@ -1,6 +1,19 @@
 from django.http import JsonResponse
 from .models import TaskList
 from .models import Task
+from django.contrib.auth.models import User, Group
+from rest_framework import viewsets
+from .serializers import TaskListSerializer
+
+
+class TaskListViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows users to be viewed or edited.
+    """
+    queryset = TaskList.objects.all()
+    serializer_class = TaskListSerializer
+
+
 
 
 def tasklist_list(request):
@@ -29,3 +42,7 @@ def tasklist_task(request, pk):
     tasks = tasklists.tasks_set.all()
     json_tasks = [ts.to_json() for ts in tasks]
     return JsonResponse(json_tasks, safe=False)
+
+
+
+
