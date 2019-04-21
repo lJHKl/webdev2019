@@ -1,0 +1,31 @@
+<!-- <app-child [title]="'Title From Parent'"
+(output)="output = $event"
+[numberArray]="[1,2,3,4,5]"
+(stringArray)="stringArray = $event"
+></app-child>
+
+OUTPUT STRING:
+<h3>{{output}}</h3>
+
+
+OUTPUT STRINGS:
+<div>
+  <div *ngFor="let s of stringArray">{{s}}</div>
+</div>
+
+
+SEND MESSAGE BY SERVICE:
+
+<div (click)="sendMessageByService()"> SEND MESSAGE BY SERVICE</div> -->
+
+CATEGORIES
+<ng-container *ngIf="!loading">
+Loading...
+</ng-container>
+<ng-container *ngIf="loading">
+    <div>
+      <div *ngFor="let c of categories">
+        {{c.id}} - {{c.name}}
+      </div>
+    </div>
+ </ng-container>

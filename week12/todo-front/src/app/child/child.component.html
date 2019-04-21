@@ -1,0 +1,21 @@
+INPUT TITLE
+
+<h2>
+  {{title}}
+</h2>
+
+INPUT Numbers
+<div *ngFor="let a of numberArray">
+  {{a}}
+  </div>
+
+
+
+<div (click)="sendMessage()">
+Send Message
+</div>
+
+<div (click)="sendString()">
+  Send string Array
+  </div>
+
